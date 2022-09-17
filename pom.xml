@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">  
+  <modelVersion>4.0.0</modelVersion>  
+  <groupId>com.microsoft.example</groupId>  
+  <artifactId>MyWebApp</artifactId>  
+  <packaging>war</packaging>  
+  <version>1.0-SNAPSHOT</version>  
+  <name>MyWebApp Maven Webapp</name>  
+  <url>http://maven.apache.org</url>  
+  <dependencies> 
+    <dependency> 
+      <groupId>junit</groupId>  
+      <artifactId>junit</artifactId>  
+      <version>3.8.1</version>  
+      <scope>test</scope> 
+    </dependency> 
+  </dependencies>  
+  <build> 
+    <finalName>MyWebApp</finalName>  
+    <plugins> 
+      <plugin> 
+        <groupId>com.microsoft.azure</groupId>  
+        <artifactId>azure-webapp-maven-plugin</artifactId>  
+        <version>2.6.1</version>  
+        <configuration> 
+          <auth>
+          <client>${azure.client}</client>
+          <tenant>0c508b0d-c4b2-4a38-93c7-5947fb5a5656</tenant>
+          <key>${azure.key}</key>
+          <environment>azure</environment>
+          </auth>
+          <schemaVersion>v2</schemaVersion>  
+          <subscriptionId/>  
+          <resourceGroup>MyWebApp-1663423177699999-rg</resourceGroup>  
+          <appName>MyWebApp-166342317769999</appName>  
+          <pricingTier>F1</pricingTier>  
+          <region>centralus</region>  
+          <runtime> 
+            <os>Linux</os>  
+            <javaVersion>Java 8</javaVersion>  
+            <webContainer>Tomcat 8.5</webContainer> 
+          </runtime>  
+          <deployment> 
+            <resources> 
+              <resource> 
+                <directory>${project.basedir}/target</directory>  
+                <includes> 
+                  <include>*.war</include> 
+                </includes> 
+              </resource> 
+            </resources> 
+          </deployment> 
+        </configuration> 
+      </plugin> 
+    </plugins> 
+  </build> 
+</project>
