@@ -8,8 +8,8 @@ def getFtpPublishProfile(def publishProfilesJson) {
 }
 
 node {
-  withEnv(['AZURE_SUBSCRIPTION_ID=e44c9379-2fc4-4ec0-8945-b7fd3ff798bd',
-        'AZURE_TENANT_ID=0c508b0d-c4b2-4a38-93c7-5947fb5a5656']) {
+  withEnv(['AZURE_SUBSCRIPTION_ID=6003c517-c410-4a40-b9c5-2e288251125e',
+        'AZURE_TENANT_ID=76a2ae5a-9f00-4f6b-95ed-5d33d77c4d61']) {
     stage('init') {
       checkout scm
     }
@@ -22,6 +22,7 @@ node {
 	
 	    withCredentials([usernamePassword(credentialsId: '45017c78-9445-417b-9c33-558022133be8', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')])
 		{
+			sh ' az login --service-principal -u $USERNAME_VAR -p $PASSWORD_VAR -t $AZURE_TENANT_ID'
         sh 'mvn package azure-webapp:deploy  -Dazure.client=${USERNAME_VAR} -Dazure.key=${PASSWORD_VAR}'
         }
     }
