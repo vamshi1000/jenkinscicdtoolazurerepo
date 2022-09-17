@@ -20,7 +20,7 @@ node {
   
     stage('deploy') {
 	
-	    withCredentials([usernamePassword(credentialsId: 'eb348a15-1385-404f-9baa-4b95ea940c18', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')])
+	    withCredentials([usernamePassword(credentialsId: 'cff4e64f-38cf-4750-ad55-f227fcd7886e', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')])
 		{
         sh 'mvn package azure-webapp:deploy  -Dazure.client=${USERNAME_VAR} -Dazure.key=${PASSWORD_VAR}'
         }
